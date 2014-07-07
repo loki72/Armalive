@@ -1,13 +1,18 @@
 #define COMPILE(func) func = compilefinal preprocessFileLineNumbers ("armalive\" + #func + ".sqf")
 
-// First, report a new session starting
-_str =  format ["newmission1;%1",missionName];
-"armalive" callextension _str;
-diag_log _str;
-
-// Set up for clients to transfer their info
 armalive_cmd = "";
-"armalive_cmd" addPublicVariableEventHandler { "armalive" callextension (_this select 1); diag_log text (_this select 1); };
+
+// First, report a new session starting
+if (isServer) then 
+{
+	_str =  format ["newmission1;%1",missionName];
+	"armalive" callextension _str;
+	diag_log _str;
+	
+	// Set up for clients to transfer their info
+	"armalive_cmd" addPublicVariableEventHandler { "armalive" callextension (_this select 1); diag_log text (_this select 1); };
+};
+
 //armalive_send = compilefinal preprocessfile "armalive\armalive_send.sqf";
 COMPILE(armalive_send);
 

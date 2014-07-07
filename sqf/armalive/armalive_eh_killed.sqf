@@ -1,7 +1,7 @@
 
 _victim = _this select 0;
 _killer = _this select 1;
-
+_score = _this select 2;
 
 format ["inf_killed_inf1;%1;%2;%3;%4;%5;%6;%7", 
 	getplayeruid _killer,
